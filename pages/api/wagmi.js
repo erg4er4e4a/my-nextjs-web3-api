@@ -4,13 +4,13 @@ import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
 import { mainnet, arbitrum } from '@reown/appkit/networks'
 
 // 確保你在 Vercel 上設置了 NEXT_PUBLIC_PROJECT_ID
-export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
 
 if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const networks = [mainnet, arbitrum]
+const networks = [mainnet, arbitrum]
 
 // 設置 Wagmi Adapter（配置）
 const wagmiAdapter = new WagmiAdapter({
@@ -22,9 +22,7 @@ const wagmiAdapter = new WagmiAdapter({
   networks,
 })
 
-export const config = wagmiAdapter.wagmiConfig
-
-// API 路由處理：與智能合約進行交互
+// 處理 API 路由：與智能合約進行交互
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
